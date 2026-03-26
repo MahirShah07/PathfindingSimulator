@@ -1,0 +1,223 @@
+:root {
+  color-scheme: light dark;
+  --bg: #101527;
+  --surface: #1a2140;
+  --text: #f5f7ff;
+  --muted: #a5aed0;
+  --accent: #72d6ff;
+  --accent-2: #8cff9a;
+  --danger: #ff8d8d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: radial-gradient(circle at top, #1f2f68 0%, var(--bg) 45%);
+  color: var(--text);
+}
+
+#app {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.screen {
+  display: none;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.screen.active {
+  display: flex;
+}
+
+.card {
+  width: min(680px, 100%);
+  background: color-mix(in srgb, var(--surface) 90%, black 10%);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+button,
+input,
+textarea,
+select {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font: inherit;
+}
+
+button {
+  min-height: 48px;
+  padding: 12px 14px;
+  background: linear-gradient(135deg, #4fa6ff, #6e79ff);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.2s ease;
+}
+
+button:active,
+.button-press {
+  transform: scale(0.98);
+}
+
+input,
+textarea,
+select {
+  min-height: 48px;
+  padding: 10px 12px;
+  background: #0f1533;
+  color: var(--text);
+  border-color: #2b3e86;
+}
+
+label {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  font-size: 0.95rem;
+}
+
+.progress-wrap {
+  width: min(460px, 100%);
+  height: 16px;
+  border-radius: 999px;
+  border: 1px solid #5d76d9;
+  background: #10173a;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 0.2s linear;
+}
+
+.logo {
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.diagram-wrap {
+  position: relative;
+  width: min(760px, 100%);
+  min-height: 360px;
+  border-radius: 14px;
+  border: 1px solid #3247a3;
+  background: #0d1434;
+  overflow: hidden;
+}
+
+.diagram-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.node-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.node {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid #93a4f3;
+  background: #1d2b63;
+  color: white;
+  display: grid;
+  place-items: center;
+  transform: translate(-50%, -50%);
+  touch-action: manipulation;
+}
+
+.node.selected {
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 50%, transparent), 0 0 20px var(--accent);
+  animation: pulse 1s ease infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.25); }
+}
+
+.results {
+  display: grid;
+  gap: 10px;
+  width: 100%;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  background: #2f3b73;
+}
+
+.error {
+  color: var(--danger);
+}
+
+.path-anim {
+  stroke: #a6ffd6;
+  stroke-width: 2.5;
+  stroke-dasharray: 6 6;
+  animation: dash 1s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
